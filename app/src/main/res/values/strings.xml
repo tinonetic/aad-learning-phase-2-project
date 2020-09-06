@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GADS Leaderboard</string>
+    <string name="app_name">LEADERBOARD</string>
     <string name="tab_text_learning_leaders">Learning Leaders</string>
     <string name="tab_text_skill_iq_leaders">Skill IQ Leaders</string>
 </resources>
