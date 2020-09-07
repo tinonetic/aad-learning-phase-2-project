@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.tinonetic.gadsleaderboard.R;
+import com.tinonetic.gadsleaderboard.ui.main.learning.LearningLeadersFragment;
+import com.tinonetic.gadsleaderboard.ui.main.skilliq.SkillIqLeadersFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -19,6 +21,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_learning_leaders, R.string.tab_text_skill_iq_leaders};
     private final Context mContext;
+    private final int LEARNING_LEADERS_TAB = 0;
+    private final int SKILLS_IQ_LEADERS_TAB = 1;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
@@ -29,7 +33,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        switch (position){
+            case LEARNING_LEADERS_TAB:
+                return LearningLeadersFragment.newInstance();
+            case SKILLS_IQ_LEADERS_TAB:
+                return SkillIqLeadersFragment.newInstance();
+        }
+        return null;
     }
 
     @Nullable
