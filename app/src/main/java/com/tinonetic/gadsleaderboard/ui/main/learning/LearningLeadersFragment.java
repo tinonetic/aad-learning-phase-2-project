@@ -46,7 +46,8 @@ public class LearningLeadersFragment extends Fragment {
         // TODO: Use the ViewModel
 
         try {
-            URL learnersUrl = ApiClient.buildUrl("/api/hours");
+            URL learnersUrl = ApiClient.buildUrl("api/hours");
+            // fetch and assign results to view
             new LearningLeadersApiRequestTask().execute(learnersUrl);
 
         }

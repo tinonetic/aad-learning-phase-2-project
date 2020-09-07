@@ -1,5 +1,6 @@
 package com.tinonetic.gadsleaderboard.api;
 
+import android.net.Uri;
 import android.util.Log;
 
 import java.io.IOException;
@@ -15,14 +16,15 @@ public class ApiClient {
 
     private static final String TAG = ApiClient.class.getSimpleName();
     public static final String BASE_API_URL = "https://gadsapi.herokuapp.com";
+    public static final Uri BASE_URI = Uri.parse(BASE_API_URL);
 
     // builds the URL based on the BASE_API_URL and the given category
-    public static URL buildUrl(String category){
-        String fullUrl = BASE_API_URL + category;
+    public static URL buildUrl(String resource){
         URL url = null;
-
+        Uri uri = Uri.withAppendedPath(BASE_URI,resource).buildUpon()
+                .build();
         try {
-            url = new URL(fullUrl);
+            url = new URL(uri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
