@@ -14,8 +14,12 @@ import android.view.ViewGroup;
 
 import com.tinonetic.gadsleaderboard.R;
 
+/**
+ * Responsible for displaying the Skill IQ Leaders
+ */
 public class SkillIqLeadersFragment extends Fragment {
 
+    private final String TAG = getClass().getSimpleName();
     private SkillIqLeadersViewModel mViewModel;
 
     public static SkillIqLeadersFragment newInstance() {
@@ -33,6 +37,7 @@ public class SkillIqLeadersFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(SkillIqLeadersViewModel.class);
         // TODO: Use the ViewModel
+        //getView().
     }
 
 }

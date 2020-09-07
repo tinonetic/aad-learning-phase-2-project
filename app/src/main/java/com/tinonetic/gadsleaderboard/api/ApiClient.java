@@ -49,7 +49,7 @@ public class ApiClient {
                 return null;
             }
         }catch (Exception e){
-            Log.d("Error", e.toString());
+            Log.e("Error", e.toString());
             return null;
         }
         finally {
