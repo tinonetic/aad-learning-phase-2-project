@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tinonetic.gadsleaderboard.R;
@@ -28,6 +29,7 @@ public class LearningLeadersFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
     private LearningLeadersViewModel mViewModel;
+    private ProgressBar mLoadingProgress;
 
     public static LearningLeadersFragment newInstance() {
         return new LearningLeadersFragment();
@@ -45,6 +47,7 @@ public class LearningLeadersFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(LearningLeadersViewModel.class);
         // TODO: Use the ViewModel
 
+        mLoadingProgress = (ProgressBar) getView().findViewById(R.id.progress_bar_loading);
         try {
             URL learnersUrl = ApiClient.buildUrl("api/hours");
             // fetch and assign results to view
@@ -75,8 +78,15 @@ public class LearningLeadersFragment extends Fragment {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mLoadingProgress.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected void onPostExecute(String result) {
             TextView textViewApiResult = (TextView) getView().findViewById(R.id.text_learning_leaders);
+            mLoadingProgress.setVisibility(View.INVISIBLE);
             textViewApiResult.setText(result);
         }
     }
