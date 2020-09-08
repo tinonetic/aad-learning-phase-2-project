@@ -18,15 +18,17 @@ import android.widget.TextView;
 
 import com.tinonetic.gadsleaderboard.R;
 import com.tinonetic.gadsleaderboard.api.ApiClient;
+import com.tinonetic.gadsleaderboard.model.LearningLeader;
 
 import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
-/**
+/*
  * Responsible for displaying the Learning Leaders
- */
+ **/
 public class LearningLeadersFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
@@ -64,7 +66,7 @@ public class LearningLeadersFragment extends Fragment {
 
     /*
     * Performs the background fetching of the LearningLeaders data from the API
-    */
+    **/
     public class LearningLeadersApiRequestTask extends AsyncTask<URL,Void, String> {
 
         @Override
@@ -102,7 +104,20 @@ public class LearningLeadersFragment extends Fragment {
                 textViewApiResult.setVisibility(View.VISIBLE);
                 textViewLoadingError.setVisibility(View.INVISIBLE);
             }
-            textViewApiResult.setText(result);
+
+            ArrayList<LearningLeader> learningLeaders = ApiClient.getLearningLeaderFromJson(result);
+            String resultString = "";
+            StringBuilder stringBuilder = new StringBuilder();
+            for (LearningLeader learningLeader :
+                    learningLeaders) {
+
+                stringBuilder
+                        .append(resultString)
+                        .append(learningLeader.getName())
+                        .append("\n")
+                        .append(Integer.toString(learningLeader.getHours()));
+            }
+            textViewApiResult.setText(stringBuilder.toString());
         }
     }
 }

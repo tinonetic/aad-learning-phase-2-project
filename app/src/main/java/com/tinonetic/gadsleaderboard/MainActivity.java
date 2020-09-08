@@ -30,6 +30,8 @@ import java.net.URL;
 // TODO: Add splash screen
 // TODO: Implement ViewModel
 // TODO: Implement Room DB
+// TODO: Add search
+// TODO: In Room DB create lookups for different badge types - Have a badge type identifier????
 public class MainActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
 

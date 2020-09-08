@@ -3,11 +3,18 @@ package com.tinonetic.gadsleaderboard.api;
 import android.net.Uri;
 import android.util.Log;
 
+import com.tinonetic.gadsleaderboard.model.LearningLeader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ApiClient {
@@ -59,5 +66,37 @@ public class ApiClient {
 
             Log.d(TAG, "FINISH getJson() with URL:" + url.toString());
         }
+    }
+
+    public static ArrayList<LearningLeader> getLearningLeaderFromJson(String json) {
+        final String ID = "id";
+        final String NAME = "name";
+        final String HOURS = "hours";
+        final String COUNTRY = "country";
+        final String BADGE_URL = "badgeUrl";
+        final String ITEMS = "items";
+
+        ArrayList<LearningLeader> learningLeaders = new ArrayList<LearningLeader>();
+        try {
+            //JSONObject jsonLearningLeaders = new JSONObject(json);
+            JSONArray arrayLearningLeaders = new JSONArray(json);
+            int leaderCount = arrayLearningLeaders.length();
+            for (int i = 0; i < leaderCount; i++) {
+                JSONObject jsonObjectLearner = arrayLearningLeaders.getJSONObject(i);
+
+                LearningLeader learningLeader = new LearningLeader(
+                        Integer.toString(i),
+                        jsonObjectLearner.getString(NAME),
+                        jsonObjectLearner.getString(COUNTRY),
+                        jsonObjectLearner.getString(BADGE_URL),
+                        jsonObjectLearner.getInt(HOURS)
+                );
+                learningLeaders.add(learningLeader);
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return learningLeaders;
     }
 }
