@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.tinonetic.gadsleaderboard.R;
 import com.tinonetic.gadsleaderboard.api.ApiClient;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -48,6 +50,7 @@ public class LearningLeadersFragment extends Fragment {
         // TODO: Use the ViewModel
 
         mLoadingProgress = (ProgressBar) getView().findViewById(R.id.progress_bar_loading);
+
         try {
             URL learnersUrl = ApiClient.buildUrl("api/hours");
             // fetch and assign results to view
@@ -86,7 +89,19 @@ public class LearningLeadersFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             TextView textViewApiResult = (TextView) getView().findViewById(R.id.text_learning_leaders);
+            TextView textViewLoadingError = (TextView) getView().findViewById(R.id.text_error);
+
             mLoadingProgress.setVisibility(View.INVISIBLE);
+
+            // TODO: Handle aeroplane mode
+            if(result == null){
+                textViewApiResult.setVisibility(View.INVISIBLE);
+                textViewLoadingError.setVisibility(View.VISIBLE);
+            }
+            else{
+                textViewApiResult.setVisibility(View.VISIBLE);
+                textViewLoadingError.setVisibility(View.INVISIBLE);
+            }
             textViewApiResult.setText(result);
         }
     }

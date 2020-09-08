@@ -3,4 +3,6 @@
     <string name="tab_text_learning_leaders">Learning Leaders</string>
     <string name="tab_text_skill_iq_leaders">Skill IQ Leaders</string>
     <string name="button_submit">Submit</string>
+    <!--TODO make this generic for both-->
+    <string name="error_loading_learning_data">Error loading Learning Leader data from API</string>
 </resources>

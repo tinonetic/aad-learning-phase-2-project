@@ -20,6 +20,16 @@ import com.tinonetic.gadsleaderboard.ui.main.SectionsPagerAdapter;
 
 import java.net.URL;
 
+// TODO: Splash screen
+// TODO: Progress bar/animation
+// TODO: enable StrictMode penalty (Asych course)
+// TODO: Handle aerplane mode
+// TODO: add translation
+// TODO: add unit tests
+// TODO: Fix layouts and widget designs (rounded buttons etc)
+// TODO: Add splash screen
+// TODO: Implement ViewModel
+// TODO: Implement Room DB
 public class MainActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
 
