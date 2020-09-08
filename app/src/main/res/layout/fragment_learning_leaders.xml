@@ -6,34 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.learning.LearningLeadersFragment">
 
-    <TextView
-        android:id="@+id/text_learning_leaders"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Learning Leaders"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
 
     <ProgressBar
         android:id="@+id/progress_bar_loading"
         style="?android:attr/progressBarStyle"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/text_learning_leaders"
-        app:layout_constraintEnd_toEndOf="@+id/text_learning_leaders"
-        app:layout_constraintStart_toStartOf="@+id/text_learning_leaders"
-        app:layout_constraintTop_toTopOf="@+id/text_learning_leaders" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_error"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/error_loading_learning_data"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/progress_bar_loading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progress_bar_loading" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_learning_leaders"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Learning Leaders"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
