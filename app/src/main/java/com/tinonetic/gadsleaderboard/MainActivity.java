@@ -32,6 +32,7 @@ import java.net.URL;
 // TODO: Implement Room DB
 // TODO: Add search
 // TODO: In Room DB create lookups for different badge types - Have a badge type identifier????
+// TODO: Change color accent in res/values/colors.. also look at themes
 public class MainActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
 

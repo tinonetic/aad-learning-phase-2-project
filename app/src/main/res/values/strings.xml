@@ -5,4 +5,5 @@
     <string name="button_submit">Submit</string>
     <!--TODO make this generic for both-->
     <string name="error_loading_learning_data">Error loading Learning Leader data from API</string>
+    <string name="top_learner_badge">Top Learner Badge</string>
 </resources>
