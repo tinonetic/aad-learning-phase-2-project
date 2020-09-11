@@ -33,7 +33,7 @@ public class LearningLeadersAdapter extends RecyclerView.Adapter<LearningLeaders
     @Override
     public LearningLeadersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // inflate row layout
-        View itemView = mLayoutInflater.inflate(R.layout.learning_leader_item,parent,false);
+        View itemView = mLayoutInflater.inflate(R.layout.learning_leader_item_card,parent,false);
         return new LearningLeadersViewHolder(itemView);
     }
 
