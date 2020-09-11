@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.tinonetic.gadsleaderboard.R;
-import com.tinonetic.gadsleaderboard.api.ApiClient;
+import com.tinonetic.gadsleaderboard.networking.ApiClient;
 
 import java.net.URL;
 

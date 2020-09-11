@@ -19,10 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tinonetic.gadsleaderboard.R;
-import com.tinonetic.gadsleaderboard.api.ApiClient;
+import com.tinonetic.gadsleaderboard.networking.ApiClient;
 import com.tinonetic.gadsleaderboard.model.LearningLeader;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -118,8 +116,6 @@ public class LearningLeadersFragment extends Fragment {
             }
 
             ArrayList<LearningLeader> learningLeaders = ApiClient.getLearningLeaderFromJson(result);
-            String resultString = "";
-            StringBuilder stringBuilder = new StringBuilder();
 
             LearningLeadersAdapter adapter = new LearningLeadersAdapter(mFragmentReference.get().getContext(),learningLeaders);
             mRecyclerLearningLeaders.setAdapter(adapter);

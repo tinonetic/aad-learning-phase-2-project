@@ -28,7 +28,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/top_learner" />
+                app:srcCompat="@drawable/skill_iq_trimmed" />
 
             <TextView
                 android:id="@+id/text_learner_name"
@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/text_achievement_and_location"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/learning_leader_achievement_and_location"

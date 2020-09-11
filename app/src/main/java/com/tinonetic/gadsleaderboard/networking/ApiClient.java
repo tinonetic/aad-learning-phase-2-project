@@ -1,9 +1,10 @@
-package com.tinonetic.gadsleaderboard.api;
+package com.tinonetic.gadsleaderboard.networking;
 
 import android.net.Uri;
 import android.util.Log;
 
 import com.tinonetic.gadsleaderboard.model.LearningLeader;
+import com.tinonetic.gadsleaderboard.model.SkillIqLeader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -98,5 +99,36 @@ public class ApiClient {
             e.printStackTrace();
         }
         return learningLeaders;
+    }
+
+    public static ArrayList<SkillIqLeader> getSkillIqLeaderFromJson(String json) {
+        final String ID = "id";
+        final String NAME = "name";
+        final String SCORE = "score";
+        final String COUNTRY = "country";
+        final String BADGE_URL = "badgeUrl";
+        final String ITEMS = "items";
+
+        ArrayList<SkillIqLeader> skillIqLeaders = new ArrayList<SkillIqLeader>();
+        try {
+            JSONArray arrayskillIqLeaders = new JSONArray(json);
+            int leaderCount = arrayskillIqLeaders.length();
+            for (int i = 0; i < leaderCount; i++) {
+                JSONObject jsonObjectLearner = arrayskillIqLeaders.getJSONObject(i);
+
+                SkillIqLeader learningLeader = new SkillIqLeader(
+                        Integer.toString(i),
+                        jsonObjectLearner.getString(NAME),
+                        jsonObjectLearner.getString(COUNTRY),
+                        jsonObjectLearner.getString(BADGE_URL),
+                        jsonObjectLearner.getInt(SCORE)
+                );
+                skillIqLeaders.add(learningLeader);
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return skillIqLeaders;
     }
 }
