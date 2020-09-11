@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import com.tinonetic.gadsleaderboard.model.LearningLeader;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -34,6 +37,7 @@ public class LearningLeadersFragment extends Fragment {
     private final String TAG = getClass().getSimpleName();
     private LearningLeadersViewModel mViewModel;
     private ProgressBar mLoadingProgress;
+    private RecyclerView mRecyclerLearningLeaders;
 
     public static LearningLeadersFragment newInstance() {
         return new LearningLeadersFragment();
@@ -52,11 +56,13 @@ public class LearningLeadersFragment extends Fragment {
         // TODO: Use the ViewModel
 
         mLoadingProgress = (ProgressBar) getView().findViewById(R.id.progress_bar_loading);
-
+        mRecyclerLearningLeaders = (RecyclerView) getView().findViewById(R.id.recycler_learning_leaders);
+        LinearLayoutManager  learningLeadersLayoutManager = new LinearLayoutManager(this.getContext());
+        mRecyclerLearningLeaders.setLayoutManager(learningLeadersLayoutManager);
         try {
             URL learnersUrl = ApiClient.buildUrl("api/hours");
             // fetch and assign results to view
-            new LearningLeadersApiRequestTask().execute(learnersUrl);
+            new LearningLeadersApiRequestTask(this).execute(learnersUrl);
 
         }
         catch  (Exception e) {
@@ -68,6 +74,12 @@ public class LearningLeadersFragment extends Fragment {
     * Performs the background fetching of the LearningLeaders data from the API
     **/
     public class LearningLeadersApiRequestTask extends AsyncTask<URL,Void, String> {
+        // TODO: Review. Weak reference prevents memory leak by allowing its garbage collecion
+        private WeakReference<LearningLeadersFragment> mFragmentReference;
+
+        public LearningLeadersApiRequestTask(LearningLeadersFragment fragmentReference) {
+            this.mFragmentReference = new WeakReference<>(fragmentReference);
+        }
 
         @Override
         protected String doInBackground(URL... urls) {
@@ -90,34 +102,27 @@ public class LearningLeadersFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            TextView textViewApiResult = (TextView) getView().findViewById(R.id.text_learning_leaders);
             TextView textViewLoadingError = (TextView) getView().findViewById(R.id.text_error);
 
             mLoadingProgress.setVisibility(View.INVISIBLE);
 
-            // TODO: Handle aeroplane mode
+            // TODO: Enhance handling of flight mode
             if(result == null){
-                textViewApiResult.setVisibility(View.INVISIBLE);
+                mRecyclerLearningLeaders.setVisibility(View.INVISIBLE);
+                // TODO: enhance error display
                 textViewLoadingError.setVisibility(View.VISIBLE);
             }
             else{
-                textViewApiResult.setVisibility(View.VISIBLE);
+                mRecyclerLearningLeaders.setVisibility(View.VISIBLE);
                 textViewLoadingError.setVisibility(View.INVISIBLE);
             }
 
             ArrayList<LearningLeader> learningLeaders = ApiClient.getLearningLeaderFromJson(result);
             String resultString = "";
             StringBuilder stringBuilder = new StringBuilder();
-            for (LearningLeader learningLeader :
-                    learningLeaders) {
 
-                stringBuilder
-                        .append(resultString)
-                        .append(learningLeader.getName())
-                        .append("\n")
-                        .append(Integer.toString(learningLeader.getHours()));
-            }
-            textViewApiResult.setText(stringBuilder.toString());
+            LearningLeadersAdapter adapter = new LearningLeadersAdapter(mFragmentReference.get().getContext(),learningLeaders);
+            mRecyclerLearningLeaders.setAdapter(adapter);
         }
     }
 }

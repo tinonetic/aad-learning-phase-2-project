@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/text_name"
+                android:id="@+id/text_learner_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -44,14 +44,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/text_achievement"
+                android:id="@+id/text_achievement_and_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_weight="1"
-                android:text="100 learning hours, Country."
-                app:layout_constraintStart_toStartOf="@+id/text_name"
-                app:layout_constraintTop_toBottomOf="@+id/text_name" />
+                android:text="@string/learning_leader_achievement_and_location"
+                app:layout_constraintStart_toStartOf="@+id/text_learner_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_learner_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

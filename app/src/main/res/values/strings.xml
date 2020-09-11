@@ -6,4 +6,5 @@
     <!--TODO make this generic for both-->
     <string name="error_loading_learning_data">Error loading Learning Leader data from API</string>
     <string name="top_learner_badge">Top Learner Badge</string>
+    <string name="learning_leader_achievement_and_location">%1$d learning hours, %2$s.</string>
 </resources>
