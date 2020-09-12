@@ -16,8 +16,8 @@ public interface ProjectSubmissionService {
     @FormUrlEncoded
     Call<String> submitProject(
             @Field("entry.1824927963") String email,
-            @Field(" entry.1877115667") String firstName,
-            @Field(" entry.2006916086") String lastName,
-            @Field(" entry.284483984") String gitHubUrl
+            @Field("entry.1877115667") String firstName,
+            @Field("entry.2006916086") String lastName,
+            @Field(" ntry.284483984") String gitHubUrl
             );
 }
